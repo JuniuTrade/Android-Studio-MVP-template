@@ -1,6 +1,6 @@
 package ${packageName}.presenter;
 
-public interface ${presenterClass} extends BasePresenter
+public abstract class ${presenterClass} extends BasePresenter
 {
 	
 }

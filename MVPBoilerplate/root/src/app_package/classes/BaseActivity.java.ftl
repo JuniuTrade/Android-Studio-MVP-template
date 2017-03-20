@@ -1,13 +1,12 @@
-package ${packageName}.view.impl;
+package ${packageName}.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
-import ${packageName}.${appClass};
 import ${packageName}.injection.AppComponent;
-import ${packageName}.presenter.BasePresenter;
 
 public abstract class BaseActivity extends AppCompatActivity
 {
@@ -20,6 +19,8 @@ public abstract class BaseActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        ${appClass}.getInstance().addActivity(this);
 
         firstStart = true;
 
@@ -37,7 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
     private void injectDependencies()
     {
-        setupComponent(((${appClass}) getApplication()).getAppComponent());
+        setupComponent(${appClass}.getInstance().getAppComponent());
     }
 
     @Override
@@ -76,6 +77,24 @@ public abstract class BaseActivity extends AppCompatActivity
         }
 
         super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        final BasePresenter presenter = getBasePresenter();
+        if (presenter != null) 
+        {
+            presenter.onDestroy();
+        }
+
+        ${appClass}.getInstance().removeActivity(this);
+
+        super.onDestroy();
+    }
+
+
+    public void showToastMessage(int message) {
+        Toast.makeText(this,getResources().getText(message),Toast.LENGTH_SHORT).show();
     }
 
     /**

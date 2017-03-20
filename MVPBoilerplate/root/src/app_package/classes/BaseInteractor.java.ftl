@@ -1,4 +1,4 @@
-package ${packageName}.interactor;
+package ${packageName}.base;
 
 public interface BaseInteractor
 {

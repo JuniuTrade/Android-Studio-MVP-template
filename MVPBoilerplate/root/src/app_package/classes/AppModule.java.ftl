@@ -3,7 +3,7 @@ package ${packageName}.injection;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import ${packageName}.${appClass};
+import ${packageName}.base.${appClass};
 
 import dagger.Module;
 import dagger.Provides;

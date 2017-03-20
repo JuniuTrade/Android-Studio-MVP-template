@@ -6,11 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ${packageName}.R;
+import android.databinding.DataBindingUtil;
 import ${packageName}.view.${viewClass};
-import ${packageName}.presenter.BasePresenter;
 import ${packageName}.presenter.${presenterClass};
-import ${packageName}.injection.AppComponent;
 import ${packageName}.injection.${moduleClass};
 import ${packageName}.injection.Dagger${componentClass};
 
@@ -20,28 +18,26 @@ public final class ${activityClass} extends BaseFragment implements ${viewClass}
 {
     @Inject 
     ${presenterClass} mPresenter;
-
-    public ${activityClass}()
-    {
-        // Required empty public constructor
-    }
+    @Inject
+    ${viewModelClass} m${viewModelClass};
+    Fragment${underscoreToCamelCase(classToResource(activityClass))}Binding mBinding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        final View v = inflater.inflate(R.layout.${layoutName}, container, false);
-
-        return v;
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.${layoutName}, container, false);
+        mBinding.setView(this);
+        mBinding.setPresenter(mPresenter);
+        mBinding.setModel(m${viewModelClass});
+        ButterKnife.bind(this, mBinding.getRoot());
+        return mBinding.getRoot();
     }
 
     @Override
     protected void setupComponent(@NonNull AppComponent parentComponent) 
     {
-        Dagger${componentClass}.builder()
-            .appComponent(parentComponent)
-            .${moduleClass?uncap_first}(new ${moduleClass}(this))
-            .build()
-            .inject(this);
+        Dagger${componentClass}.builder().appComponent(parentComponent)
+            .${moduleClass?uncap_first}(new ${moduleClass}(this)).build().inject(this);
     }
 
     @Override

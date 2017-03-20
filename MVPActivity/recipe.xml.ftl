@@ -28,4 +28,7 @@
     <instantiate from="src/app_package/classes/Interactor.java.ftl"
       to="${escapeXmlAttribute(srcOut)}/interactor/${interactorClass}.java" />
 
+    <instantiate from="src/app_package/classes/ViewModel.java.ftl"
+      to="${escapeXmlAttribute(srcOut)}/model/${viewModelClass}.java" />
+
 </recipe>

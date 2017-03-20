@@ -59,7 +59,16 @@
         constraints="class|nonempty|unique"
         default="MainInteractor"
         suggest="${underscoreToCamelCase(classToResource(activityClass))}Interactor"
-        help="The name of the Interactor to create" />     
+        help="The name of the Interactor to create" />
+
+    <parameter
+        id="viewModelClass"
+        name="ViewModel Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainModel"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}Model"
+        help="The name of the ViewModel to create" />     
 
     <parameter
         id="componentClass"
@@ -67,7 +76,7 @@
         type="string"
         constraints="class|nonempty|unique"
         default="MainComponent"
-        suggest="${underscoreToCamelCase(viewClass)}Component"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}Component"
         help="The name of the Component to create" />
 
     <parameter
@@ -76,7 +85,7 @@
         type="string"
         constraints="class|nonempty|unique"
         default="MainModule"
-        suggest="${underscoreToCamelCase(viewClass)}Module"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}Module"
         help="The name of the Module to create" />         
 
     <execute file="recipe.xml.ftl" />

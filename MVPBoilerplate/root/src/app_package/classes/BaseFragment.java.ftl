@@ -1,13 +1,12 @@
-package ${packageName}.view.impl;
+package ${packageName}.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
-import ${packageName}.${appClass};
 import ${packageName}.injection.AppComponent;
-import ${packageName}.presenter.BasePresenter;
 
 public abstract class BaseFragment extends Fragment
 {
@@ -76,6 +75,21 @@ public abstract class BaseFragment extends Fragment
         }
 
         super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        final BasePresenter presenter = getBasePresenter();
+        if (presenter != null) 
+        {
+            presenter.onDestroy();
+        }
+
+        super.onDestroy();
+    }
+
+    public void showToastMessage(int message) {
+        Toast.makeText(getContext(),getResources().getText(message),Toast.LENGTH_SHORT).show();
     }
 
     /**

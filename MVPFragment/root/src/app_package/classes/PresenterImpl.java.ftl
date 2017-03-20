@@ -2,54 +2,28 @@ package ${packageName}.presenter.impl;
 
 import android.os.Bundle;
 
-import android.support.annotation.NonNull;
-
 import ${packageName}.presenter.${presenterClass};
 import ${packageName}.view.${viewClass};
 import ${packageName}.interactor.${interactorClass};
 
 import javax.inject.Inject;
 
-public final class ${presenterClass}Impl implements ${presenterClass}
+public final class ${presenterClass}Impl extends ${presenterClass}
 {
-    /**
-     * The view
-     */
-    @NonNull
     private final ${viewClass} mView;
-    /**
-     * The interactor
-     */
-    @NonNull
     private final ${interactorClass} mInteractor;
+    private final ${viewModelClass} m${viewModelClass};
 
     @Inject
-    public ${presenterClass}Impl(@NonNull ${viewClass} view, @NonNull ${interactorClass} interactor)
+    public ${presenterClass}Impl(${viewClass} view,${interactorClass} interactor,${viewModelClass} ${viewModelClass?uncap_first})
     {
-    	mView = view;
-    	mInteractor = interactor;
-    }
-
-    @Override
-    public void onRestoreState(@NonNull Bundle savedInstanceState)
-    {
-        
+        mView = view;
+        mInteractor = interactor;
+        m${viewModelClass} = ${viewModelClass?uncap_first};
     }
 
     @Override
     public void onStart(boolean firstStart)
-    {
-
-    }
-
-    @Override
-    public void onStop()
-    {
-
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState)
     {
 
     }

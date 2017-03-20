@@ -3,7 +3,7 @@ package ${packageName}.view;
 import android.support.annotation.UiThread;
 
 @UiThread
-public interface ${viewClass} 
+public interface ${viewClass} extends BaseView
 {
     
 }

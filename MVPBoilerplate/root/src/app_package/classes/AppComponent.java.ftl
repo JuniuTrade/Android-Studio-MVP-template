@@ -2,7 +2,7 @@ package ${packageName}.injection;
 
 import android.content.Context;
 
-import ${packageName}.${appClass};
+import ${packageName}.base.${appClass};
 
 import javax.inject.Singleton;
 
